@@ -82,13 +82,14 @@ def populateDict(node, d, evalBackwards=False):
 			populateDict(node[i], d, evalBackwards)
 
 def treeToList(node,prev=None):
-	n = node[0]
-	prev2 = prev + [n[0]] if prev else [n[0]]
-	if n[2] != bignum:
-		yield prev2
-	for i in range(1,len(node)):
-		for l in treeToList(node[i],prev2):
-			yield l
+	if node:
+		n = node[0]
+		prev2 = prev + [n[0]] if prev else [n[0]]
+		if n[2] != bignum:
+			yield prev2
+		for i in range(1,len(node)):
+			for l in treeToList(node[i],prev2):
+				yield l
 
 # evaluate valid char lists from grid of characters starting from p
 # p = (3,2)
